@@ -1,6 +1,18 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
+import chalk from "chalk";
+import chalkAnimation from 'chalk-animation';
+import { TIMEOUT } from "dns";
+
+
+const sleep=()=>{
+    return new Promise((res)=>{
+        setTimeout(res,2000);
+    })
+}
 
 interface User{
+    name:string;
     id:number;
     password:number;
 }
@@ -11,16 +23,21 @@ interface Operations{
 }
 const user_info:User[]=[
     {
+        name:"Shah",
         id:1000,
         password:123456
     },
     {
+        name:"Shahroze",
         id:1001,
         password:12345
     }   
 ];
 
 async function login(){
+    const rainbow = chalkAnimation.rainbow('ATM by Shahroze Kamran Sahotra',2); // Animation starts
+    await sleep();
+    rainbow.stop();
     const questions=[
         {
             type:'number',
@@ -41,7 +58,7 @@ async function login(){
     }
     
     if(user_info.find((p)=>p.password===answers.passId)){
-        console.log("Login Successful");
+        console.log(chalk.greenBright("Login Successful"));
         const options:Operations=await inquirer.prompt([
             {
                 type:'list',
@@ -76,36 +93,35 @@ async function login(){
                 when(options){
                     return options.transactionType==="Withdraw"
                 }
-            }
-            
-           
+            },                                   
         ]);
-        const balance=10000;
-        console.log(balance);
-
-        const enteredAmount=options.amount;
-        console.log(enteredAmount);
+        const balance=10000;        
+        const enteredAmount=options.amount;        
         if(enteredAmount<balance){
             const remainingBalance=balance-enteredAmount;
-            console.log(`${userfind.id} remaining balance is ${remainingBalance}`);
-        }
-
-        
-        
-        
-        
-
-    }
-    
-
+            console.log(chalk.blueBright( `Transaction has been completed successfully!            
+${userfind.name}, Your remaining balance is ${remainingBalance}
+`));
+        }                                
+    }    
     else{
-        console.log("Login Failed");
-    }
+        console.log(chalk.redBright("Login Failed"));
+    }    
+}
+async function restart(){
+    do{
+        console.clear();        
+        await login();        
+        var again=await inquirer.prompt({
+            type:'input',
+            name:'restart',
+            message:'Press Y to restart | Press N to cancel: '
 
-    
+        })
+    }while(again.restart==='y' || again.restart==='Y')
 }
 
 
+restart();
 
 
-login();
