@@ -1,0 +1,48 @@
+[
+  {
+    "studentId": "edb40",
+    "name": "Shah",
+    "coursesEnrolled": [
+      {
+        "courseId": "c6464",
+        "courseName": "Mathematics",
+        "courseCredits": 3
+      },
+      {
+        "courseId": "bc10c",
+        "courseName": "History",
+        "courseCredits": 4
+      },
+      {
+        "courseId": "304c2",
+        "courseName": "Computer Science",
+        "courseCredits": 5
+      }
+    ],
+    "balance": 35000
+  },
+  {
+    "studentId": "e9e9e",
+    "name": "Kamran",
+    "coursesEnrolled": [
+      {
+        "courseId": "c6464",
+        "courseName": "Mathematics",
+        "courseCredits": 3
+      }
+    ],
+    "balance": 0
+  },
+  {
+    "studentId": "50308",
+    "name": "Shahhhh",
+    "coursesEnrolled": [
+      {
+        "courseId": "0dfef",
+        "courseName": "Mathematics",
+        "courseCredits": 3
+      }
+    ],
+    "balance": 589
+  }
+]
